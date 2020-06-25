@@ -233,6 +233,23 @@
   margin: 0;
 }
 
+.h2-5 {
+  font-size: 4rem;
+  line-height: 4rem;
+  margin-bottom: 1.5rem;
+  margin-top: 3rem;
+  color: #2d2d2d;
+}
+
+.h2-5-center {
+  font-size: 4rem;
+  line-height: 4rem;
+  margin-bottom: 1.5rem;
+  margin-top: 12rem;
+  color: #2d2d2d;
+
+}
+
 .line {
   border-bottom: 1px solid gray;
 }
@@ -440,7 +457,14 @@
 }
 
 @media (max-width: 500px) {
-
+  .h2-5-center {
+    font-size: 4rem;
+    line-height: 4rem;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem;
+    color: #2d2d2d;
+  
+  }
   .placeHolderImg1 {
     background-size: 100%;
   }
