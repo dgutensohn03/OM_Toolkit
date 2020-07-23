@@ -190,7 +190,7 @@
 								<div class="swiper-slide">
 									<div class="banner__inner">
 										<div class="banner__background-media banner__background_image"
-											style="background-image:url('./assets/Banner_Home-100.jpg')">
+											style="background-image:url('./assets/Banner_Home.png')">
 											<span style="display:none"></span>
 										</div>
 										<div class="wrapper">
@@ -248,18 +248,18 @@
 													<div class="break-column"></div> <!-- break -->
 													<div class="popup custom-box-shadow">
 														<ul class="lang-list">
-															<li onclick="setLanguage('ar')" -transl->Arabic</li>
-															<li onclick="setLanguage('pt-BR')" -transl->Brazilian Portuguese</li>
-															<li onclick="setLanguage('zh-CN')" -transl->Chinese (Simplified)</li>
-															<li onclick="setLanguage('nl')" -transl->Dutch</li>
-															<li onclick="setLanguage('en')" class="selected" -transl->English</li>
-															<li onclick="setLanguage('fr')" -transl->French (European)</li>
-															<li onclick="setLanguage('de')" -transl->German</li>
-															<li onclick="setLanguage('ja')" -transl->Japanese</li>
-															<li onclick="setLanguage('ru')" -transl->Russian</li>
-															<li onclick="setLanguage('es-ES')" -transl->Spanish (European)</li>
-															<li onclick="setLanguage('es-LA')" -transl->Spanish (Latin American) </li>
-															<li onclick="setLanguage('th')" -transl->Thai</li>
+															<li id="ar" onclick="setLanguage('ar')" -transl->Arabic</li>
+															<li id="pt-BR" onclick="setLanguage('pt-BR')" -transl->Brazilian Portuguese</li>
+															<li id="zh-CN" onclick="setLanguage('zh-CN')" -transl->Chinese (Simplified)</li>
+															<li id="nl" onclick="setLanguage('nl')" -transl->Dutch</li>
+															<li id="en" onclick="setLanguage('en')" class="selected" -transl->English</li>
+															<li id="fr" onclick="setLanguage('fr')" -transl->French (European)</li>
+															<li id="de" onclick="setLanguage('de')" -transl->German</li>
+															<li id="ja" onclick="setLanguage('ja')" -transl->Japanese</li>
+															<li id="ru" onclick="setLanguage('ru')" -transl->Russian</li>
+															<li id="es-ES" onclick="setLanguage('es-ES')" -transl->Spanish (European)</li>
+															<li id="es-LA" onclick="setLanguage('es-LA')" -transl->Spanish (Latin American) </li>
+															<li id="th" onclick="setLanguage('th')" -transl->Thai</li>
 														</ul>
 													</div>
 												</div>
@@ -336,7 +336,7 @@
 							<div class="section-cards">
 								<div class="card card-img-left" data-layout="1-col-simple">
 									<img alt="Card image cap" class="card-img-top float-left"
-										src="./assets/Home_Distrib_img-100.jpg">
+										src="./assets/Home_Distrib_img.png">
 									<div class="card-body">
 										<h3 -transl->Distributor Training</h3>
 										<p class="card-text" -transl->What is corruption and how can my business avoid it? In
@@ -352,7 +352,7 @@
 								</div>
 								<div class="card card-img-left" data-layout="1-col-simple">
 									<img alt="Card image cap" class="card-img-top float-left"
-										src="./assets/Home_CompTools_Img-100.jpg">
+										src="./assets/Home_CompTools_Img.png">
 									<div class="card-body">
 										<div class="h2-5-center" -transl->Compliance Tools for Your Business</div>
 										<!-- <p class="card-text">How do I establish a compliance program? What do new hires
@@ -684,12 +684,14 @@
 			$(".lang-list li").each(function (index) {
 				$(this).removeClass('selected');
 			});
-
+console.log(this.id)
 			$(this).addClass('selected');
 			//langItem[0].innerHTML = "newTitle"
 			$('.popup').hide();
 			$(".lang-btn").removeClass('active');
 			$(".lang-btn img").attr('src', './assets/Home_LangArrow_UP.png')
+
+			setLanguage(this.id);
 		})
 
 
@@ -767,9 +769,11 @@ function replaceNewLangText() {
 var language; 
 var langData;
 var newLangObject
+
+
 function getLanguage() {
 	
-(localStorage.getItem('language') == null) ? setLanguage('en') : false;
+//(localStorage.getItem('language') == null) ? setLanguage('en') : false;
 
 langData = $.ajax({ 
 url:  './lang/' +  localStorage.getItem('language') + '.json', 
@@ -784,35 +788,86 @@ success: function (lang) {
 
 }
 
-function langChange() {
-	
-	
-	setLanguage('en')
-}
-
 
 
 function setLanguage(lang) {
 	console.log(lang)
-localStorage.setItem('language', lang);
+	localStorage.setItem('language', lang);
 getLanguage();
 replaceNewLangText();
 //window.location.reload(true)
 }
 
 
-function setText() {
+window.addEventListener("load", initLangCheck);
+//window.addEventListener("load", getLanguage);
 
-//$('#title').text(lang_en.transl2);
-//$('#titleNote').text(lang_en.translID1);
+function initLangCheck() {
+	var trans = {};
 
-//window.location.reload(true)
+	trans.versions = [
+		'ar', //Arabic
+		'pt-BR', //Brazilian Portuguese
+		'zh-CN', //Chinese (Simplified)
+		'nl', //Dutch
+		'en', //English
+		'fr', //French (European)
+		'de', //German
+		'ja', //Japanese
+		'ru', //Russian
+		'es-ES', //Spanish (European)
+		'es-LA', //Spanish (Latin American)
+		'th' //Thai
+	]
+
+	var defaultLang = window.navigator.userLanguage || window.navigator.language;
+	var langSet;
+	//alert(defaultLang)
+
+	for(var i = 0; i < trans.versions.length; i++) {
+		//console.log(trans.versions[i])
+		if (!langSet) {
+			console.log(defaultLang == currLang)
+			var currLang = trans.versions[i]
+		if(defaultLang == currLang) {
+			
+			console.log("GERMAN")
+			localStorage.setItem('language', currLang);
+			getLanguage();
+			replaceNewLangText();
+
+			$(".lang-list li").each(function (index) {
+				$(this).removeClass('selected');
+			});
+			$("#" + currLang).addClass('selected');
+			
+			langSet = true;
+		} else if (!defaultLang) {
+			localStorage.setItem('language', 'en');
+			getLanguage();
+			replaceNewLangText();
+			langSet = true;
+		}
+	}
+
+	}
+	
 }
 
-//console.log(lang_en.transl2)
-setText()
-window.addEventListener("load", getlangItems);
-//window.addEventListener("load", getLanguage);
+
+
+// var versionList = ''
+// if (trans.versions && !(trans.versions[0] == f.clang && trans.versions.length == 1) ) {
+// 	versionList = '<p class="noprint">'
+// 	for (lang=0; lang<trans.versions.length; lang++) {
+// 		if (f.clang != trans.versions[lang]) {
+// 			versionList += '<span title="'+s.currLang[trans.versions[lang]]+'"><a href="#" onclick="stickyConneg(\''+f.filename+'\',\''+f.clang+'\',\''+trans.versions[lang]+'\'); return false;" lang="'+trans.versions[lang]+
+// 			'" translate="no" dir="auto">'+g.nativeText[trans.versions[lang]]+'</a></span>'+s.rlm+'&nbsp; ';
+// 			}
+// 		}
+// 	versionList += '</p>';
+// 	}
+
 	</script>
 </body>
 
