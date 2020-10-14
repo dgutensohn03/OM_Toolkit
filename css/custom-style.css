@@ -33,6 +33,36 @@
   src: url(./Static/fonts/icomoon/icomoon.woff2) format("woff2"), url(./Static/fonts/icomoon/icomoon.woff) format("woff"), url(./Static/fonts/icomoon/icomoon.ttf) format("truetype")
 }
 
+
+@font-face {
+  font-family: 'Barlow';
+  src: url('../assets/fonts/Barlow-Regular.eot');
+  src: url('../assets/fonts/Barlow-Regular.eot?#iefix') format('embedded-opentype'),
+       url('../assets/fonts/Barlow-Regular.svg#Barlow-Regular') format('svg'),
+       url('../assets/fonts/Barlow-Regular.ttf') format('truetype'),
+       url('../assets/fonts/Barlow-Regular.woff') format('woff'),
+       url('../assets/fonts/Barlow-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Barlow-Bold';
+  src: url('../assets/fonts/Barlow-Bold.eot');
+  src: url('../assets/fonts/Barlow-Bold.eot?#iefix') format('embedded-opentype'),
+       url('../assets/fonts/Barlow-Bold.svg#Barlow-Regular') format('svg'),
+       url('../assets/fonts/Barlow-Bold.ttf') format('truetype'),
+       url('../assets/fonts/Barlow-Bold.woff') format('woff'),
+       url('../assets/fonts/Barlow-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1, h2 {
+  font-family: "Barlow";
+}
+body {
+  font-family: "Barlow";
+}
 [class^="icon-"],
 [class*=" icon-"] {
   background-image: none;
@@ -58,6 +88,9 @@
   align-items: center;
 }
 
+.row {
+  margin-left: 0px !important;
+}
 .italic {
   font-style: italic;
 }
@@ -95,7 +128,7 @@
 }
 
 .carrot-text {
-  font-family: FFDinWeb, Helvetica, Arial, sans-serif;
+  font-family: "Barlow-Bold";
   color: #862633;
   font-weight: 700;
   text-align: left !important;
@@ -159,9 +192,25 @@
   right: auto;
   top: 49%;
 }
+.m-100 {
 
+  margin-right: 50px;
+}
+
+@media (max-width: 800px) {
+  .m-100 {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    flex-direction: column;
+    margin-bottom: 0 !important;
+  }
+}
 @media (max-width: 1000px) {
 
+.m-center{
+  margin-left: auto; margin-right: auto;
+}
   .card {
     width: auto !important;
     max-width: 480px !important;
@@ -208,14 +257,15 @@
 }
 
 .sm-red-text {
-  font-family: FFDinWeb, Helvetica, Arial, sans-serif;
+  font-family: "Barlow-Bold";
   color: #862633;
   font-weight: 700;
+  text-transform: uppercase;
 }
 
 .link {
   cursor: pointer;
-  font-family: FFDinWeb, Helvetica, Arial, sans-serif;
+  font-family: "Barlow-Bold";
   color: #862633 !important;
   font-weight: 700;
 }
@@ -274,7 +324,7 @@
 }
 
 .button-text {
-  font-family: FFDinWeb, Helvetica, Arial, sans-serif;
+  font-family: "Barlow-Bold" !important;
   font-size: 1.4rem;
   line-height: 2.4rem;
   font-weight: 700;
@@ -320,7 +370,7 @@
 
 .bullet-list {
   margin-top: 15px;
-  margin-bottom: 100px;
+
 }
 
 .bullet-list li {
@@ -330,39 +380,48 @@
 .sidebar {
   position: relative;
   margin-left: 0;
-  max-width: 350px;
+
 }
 
+.sidebar {
+  position: absolute;
+  width: 300px;
+  top: 642px;
+}
 
+.sidebar li{
+min-width: 300px;
+}
 .sub-navigation {
   margin: 0;
 }
 
 
-.sub-navigation ul li {
-  border-left: none;
-  padding-bottom: 0;
-}
 
 .sub-navigation ul li a {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 20px 40px;
+  height: 100%;
+  padding-left: 30px;
   font-size: 16px;
   line-height: 19px;
-  font-family: FFDinWeb, Helvetica, Arial, sans-serif;
+  font-family: "Barlow";
   font-weight: 500;
   color: #373A38;
 }
 
 .sub-navigation ul .active {
   border: 2px solid #373A38;
-  border-left: none;
+
+  /* border-left: none; */
 }
 
 .sub-navigation ul .active a {
   font-weight: 700 !important;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 30px;
 }
 
 .sub-navigation ul li img {
@@ -373,14 +432,45 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  position: absolute;
+  padding-left: 30px;
+  /* position: absolute;
   right: 40px;
-  margin-top: 22px;
+  margin-top: 22px; */
+
 }
 
 .sub-navigation ul li a {
   cursor: pointer !important;
+  padding-left: 30px;
+  padding-right: 30px;
 }
+.sub-navigation ul {
+  display: flex !important;
+  align-items: stretch; /* Default */
+  justify-content: space-evenly;
+  width: 100% !important;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+}
+.sub-navigation ul li {
+  /* border: 2px solid #C8C8C8;
+  border-top: none; */
+  background-color: #F5F7F8;
+  padding-bottom: 0;
+  display: block;
+  flex: 0 1 auto; /* Default */
+  list-style-type: none;
+  height: 63px;
+  /* min-width: 320px; */
+
+}
+
+
 
 .alert-box {
   text-align: left;
@@ -418,13 +508,76 @@
 }
 
 .line-up {
-  margin-top:-150px;
+  margin-top:75px;
   top: 0;
 }
 
 .custom-card-sm .card__content {
   min-height: 200px !important;
 
+}
+
+.m-flex-col {
+  display:flex; justify-content: flex-start;
+}
+@media (min-width: 870px) {
+.sub-navigation ul li:nth-child(1) {
+  /* flex-shrink: 1; */
+  flex: 1; 
+}
+.sub-navigation ul li:nth-child(2) {
+  /* flex-shrink: 1; */
+  flex: 1; 
+}
+.sub-navigation ul li:nth-child(3) {
+  /* flex-shrink: 1; */
+  flex: 1; 
+}
+
+.sub-navigation ul li:nth-child(4) {
+  /* flex-shrink: 1; */
+  flex: 1; 
+}
+}
+@media (max-width: 870px) {
+  .m-flex-col {
+    display:inline-block;
+
+    flex-direction: column;
+
+  }
+  .m-flex-center {
+    width: 100%;
+    padding-left: 0 !important;
+    margin-bottom: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+  
+
+.sub-navigation ul {
+flex-direction: column;
+height: auto;
+
+}
+.sub-navigation ul li{
+  margin-bottom: 0;
+  border-left: none;
+  border-right: none;
+  }
+  .sub-navigation ul .active {
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  .sub-navigation ul .active img {
+    display: flex;
+    right: 40px;
+
+  }
 }
 @media (max-width: 1650px) {
   .sidebar {
@@ -436,9 +589,7 @@
   .desktop-adjustment {
     position: static;
   }
-  .line-up {
-    margin-top:0;
-  }
+
   .sub-navigation ul .active {
     border: 2px solid #373A38;
   }
@@ -449,6 +600,12 @@
 }
 
 @media (max-width: 600px) {
+  ul {
+    columns: 1 !important;
+    -webkit-columns: 1!important;
+    -moz-columns: 1!important;
+  }
+
 
   .card__content {
     min-height: auto;
@@ -525,7 +682,7 @@
   height: 40px;
   width: 200px;
   cursor: pointer;
-  font-family: FFDinWeb, Helvetica, Arial, sans-serif;
+  font-family: "Barlow";
   font-weight: 700;
   font-size: 16px;
 }
@@ -562,7 +719,7 @@
   color: #353735;
   text-align: left;
   padding: 10px 20px;
-  font-family: FFDinWeb, Helvetica, Arial, sans-serif;
+  font-family: "Barlow";
   font-weight: 700;
   font-size: 16px;
 }
@@ -605,3 +762,24 @@ th {
   font-style: italic;
   padding: 1rem 3rem;
 }
+
+
+
+.link {
+  color: #862633;
+}
+
+.bullet-list  {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  color: #777a7d;
+}
+.bullet-header {
+  color: #777a7d;
+}
+.bullet-list  li {
+  margin-right: 50px !important;
+  
+}
+
