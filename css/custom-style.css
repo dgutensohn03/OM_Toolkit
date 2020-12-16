@@ -1,3 +1,8 @@
+
+html {
+  display: none;
+}
+
 @font-face {
   font-family: "FFDinWeb";
   font-style: italic;
